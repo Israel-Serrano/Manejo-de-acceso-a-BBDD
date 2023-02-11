@@ -1,16 +1,15 @@
 package modelo.entidad;
 
-import java.util.Objects;
-
 public class Coche{
 	
-		String id,matricula,marca,modelo,color;
+	private	int id;
+	private	String matricula,marca,modelo,color;
 
 	public Coche() {
 		super();
 	}
 
-	public Coche(String id, String matricula, String marca, String modelo, String color) {
+	public Coche(int id, String matricula, String marca, String modelo, String color) {
 		super();
 		this.id = id;
 		this.matricula = matricula;
@@ -19,11 +18,11 @@ public class Coche{
 		this.color = color;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -65,20 +64,4 @@ public class Coche{
 				+ color + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, matricula);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Coche other = (Coche) obj;
-		return Objects.equals(id, other.id) || Objects.equals(matricula, other.matricula);
-	}
 }
