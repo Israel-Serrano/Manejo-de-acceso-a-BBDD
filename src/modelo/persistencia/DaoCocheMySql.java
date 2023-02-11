@@ -14,6 +14,7 @@ import modelo.persistencia.interfaces.DaoCoche;
 public class DaoCocheMySql implements DaoCoche{
 	
 	private Connection conexion;
+	List<Coche> listaCoches = new ArrayList<>();
 	
 	//Método para abrir la conexión con al Base de Datos
 	public boolean abrirConexion(){
@@ -120,7 +121,7 @@ public class DaoCocheMySql implements DaoCoche{
 			ps.setString(2, c.getMarca());
 			ps.setString(3, c.getModelo());
 			ps.setString(4, c.getColor());
-			ps.setString(5, c.getId());
+			ps.setInt(5, c.getId());
 						
 			int numeroFilasAfectadas = ps.executeUpdate();
 			if(numeroFilasAfectadas == 0)
@@ -156,7 +157,7 @@ public class DaoCocheMySql implements DaoCoche{
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				coche = new Coche();
-				coche.setId(rs.getString(1));
+				coche.setId(rs.getInt(1));
 				coche.setMatricula(rs.getString(2));
 				coche.setMarca(rs.getString(3));
 				coche.setModelo(rs.getString(4));
@@ -180,7 +181,6 @@ public class DaoCocheMySql implements DaoCoche{
 			return null;
 		}		
 		
-		List<Coche> listaCoches = new ArrayList<>();		
 		String query = "select ID,MATRICULA,MARCA,MODELO,COLOR from coches";
 		
 		try {
@@ -190,7 +190,7 @@ public class DaoCocheMySql implements DaoCoche{
 			
 			while(rs.next()){
 				Coche coche = new Coche();
-				coche.setId(rs.getString(1));
+				coche.setId(rs.getInt(1));
 				coche.setMatricula(rs.getString(2));
 				coche.setMarca(rs.getString(3));
 				coche.setModelo(rs.getString(4));
@@ -209,7 +209,7 @@ public class DaoCocheMySql implements DaoCoche{
 		
 		return listaCoches;
 	}
-
+		
 }
 	
 
